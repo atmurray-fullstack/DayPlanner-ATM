@@ -1,14 +1,25 @@
 
 var currentTime = moment().format('LT');
+function getTime() {
+    currentTime = moment().format('LT')
+}
+getTime();
 
 console.log(currentTime);
-var now = currentTime.toString();
-now = now.split("");
-now.splice(2, 4);
-hour = now[0] + [1];
-amPm = now[2] + now[3];
-console.log(hour);
-console.log(amPm);
+
+
+
+    var now = currentTime.toString();
+    now = now.split("");
+    now.splice(2, 4);
+    console.log(now);
+    hour = now[0] + now[1];
+    hour = parseInt(hour);
+    amPm = now[2] + now[3];
+    console.log(typeof hour);
+    console.log(amPm);
+    
+
 
 
 var h1El = $('<h1>');
@@ -59,7 +70,7 @@ for (let i = 0; i < 9; i++) {
         count = count + ' PM'
         timeBlock.text(count);
     }
-   
+
 
 
     $('#main').append(newRow);
