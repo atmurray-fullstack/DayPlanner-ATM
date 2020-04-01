@@ -9,16 +9,16 @@ console.log(currentTime);
 
 
 
-    var now = currentTime.toString();
-    now = now.split("");
-    now.splice(2, 4);
-    console.log(now);
-    hour = now[0] + now[1];
-    hour = parseInt(hour);
-    amPm = now[2] + now[3];
-    console.log(typeof hour);
-    console.log(amPm);
-    
+var now = currentTime.toString();
+now = now.split("");
+now.splice(2, 4);
+console.log(now);
+hour = now[0] + now[1];
+hour = parseInt(hour);
+amPm = now[2] + now[3];
+console.log(typeof hour);
+console.log(amPm);
+
 
 
 
@@ -27,7 +27,7 @@ h1El.text(moment().format('ll'))
 //fill in todayDate h1
 $('#todayDate').append(h1El)
 $('#todayDate').addClass('mb-3')
-
+$('#my-modal').hide()
 
 
 
@@ -40,13 +40,13 @@ for (let i = 0; i < 9; i++) {
 
 
     var timeBlock = $('<div>');
-    timeBlock.addClass('col-2 timeBlock rowcont');
+    timeBlock.addClass('col-1 timeBlock rowcont');
     timeBlock.text('timeBlock')
     timeBlock.attr('id', 'timeBlock' + i)
     timeBlock.height('15vh');
 
     var notesBlock = $('<div>');
-    notesBlock.addClass('col-8 notesBlock rowcont');
+    notesBlock.addClass('col-9 notesBlock rowcont text-center');
     notesBlock.text('notesBlock');
     notesBlock.attr('notesBlock', 'row' + i);
     notesBlock.height('15vh');
@@ -56,6 +56,8 @@ for (let i = 0; i < 9; i++) {
     saveBlock.text('saveBlock');
     saveBlock.attr('id', 'saveBlock' + i)
     saveBlock.height('15vh');
+
+    var ulElem = $('<ul>');
 
     if (i < 3) {
         count = i + 9
@@ -70,18 +72,33 @@ for (let i = 0; i < 9; i++) {
         count = count + ' PM'
         timeBlock.text(count);
     }
-
-
+    
 
     $('#main').append(newRow);
     newRow.append(timeBlock);
     newRow.append(notesBlock);
     newRow.append(saveBlock);
+    notesBlock.append(ulElem);
 
 }
 
 
 
-$('#main')on('click', function(){
-    
+
+
+$('#main').on('click', function (event) {
+    var block = event.target.id;
+    console.log(block);
+    $('textarea').css('height', '150')
+    $('textarea').text('Enter notes')
+    $('#my-modal').show()
+})
+
+$('#enterInfo').on('click', function (event) {
+    event.stopPropagation()
+    event.preventDefault()
+    var noteInfo = $('textarea').text()
+    $('textarea').text('Enter notes')
+    console.log(noteInfo)
+    $('#my-modal').hide()
 })

@@ -1,7 +1,9 @@
-#time{
-
-    background-color: red;
-   
+#my-modal{
+    position:fixed;
+    top:25%;
+    z-index:1;
+    height:20%;
+    background-color: darksalmon;
 }
 
 .rowcont{
@@ -18,6 +20,10 @@
     border-bottom-right-radius: 9px;
 }
 
-.saveBlock:hover{
+.notesBlock:hover{
     background-color: aquamarine;
+}
+
+.input-group{
+    padding-top: auto;
 }
