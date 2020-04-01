@@ -10,9 +10,16 @@ console.log(currentTime);
 
 
 var now = currentTime.toString();
+if(now.length===7){
+  now='0'+now;
+}  
+
+console.log(now.length)
+
 now = now.split("");
 now.splice(2, 4);
 console.log(now);
+
 hour = now[0] + now[1];
 hour = parseInt(hour);
 amPm = now[2] + now[3];
@@ -48,7 +55,7 @@ for (let i = 0; i < 9; i++) {
     var notesBlock = $('<div>');
     notesBlock.addClass('col-9 notesBlock rowcont text-center');
     notesBlock.text('notesBlock');
-    notesBlock.attr('notesBlock', 'row' + i);
+    notesBlock.attr('id', 'notesBlock' + i);
     notesBlock.height('15vh');
 
     var saveBlock = $('<div>');
@@ -86,11 +93,12 @@ for (let i = 0; i < 9; i++) {
 
 
 
-$('#main').on('click', function (event) {
+$('.notesBlock').on('click', function (event) {
     var block = event.target.id;
     console.log(block);
+   
     $('textarea').css('height', '150')
-    $('textarea').text('Enter notes')
+    // $('textarea').text('Enter notes for ' +h1El.text()+' @ '+);
     $('#my-modal').show()
 })
 
@@ -101,4 +109,7 @@ $('#enterInfo').on('click', function (event) {
     $('textarea').text('Enter notes')
     console.log(noteInfo)
     $('#my-modal').hide()
+    var newLiEl = $('<li>');
+    newLiEl.text(noteInfo)
+    
 })

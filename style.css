@@ -2,7 +2,7 @@
     position:fixed;
     top:25%;
     z-index:1;
-    height:20%;
+    height:40%;
     background-color: darksalmon;
 }
 
@@ -25,5 +25,5 @@
 }
 
 .input-group{
-    padding-top: auto;
+    
 }
