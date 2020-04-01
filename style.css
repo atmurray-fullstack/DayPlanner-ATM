@@ -9,3 +9,15 @@
     background-color: teal;
     
 }
+
+.saveBlock{
+    border-left-style: solid;
+    border-left-width: 5px;
+    border-left-color: tomato;
+    border-top-right-radius: 9px;
+    border-bottom-right-radius: 9px;
+}
+
+.saveBlock:hover{
+    background-color: aquamarine;
+}
