@@ -43,7 +43,7 @@ for (let i = 0; i < 9; i++) {
     var newRow = $('<div>');
     newRow.addClass('row mx-auto mt-1');
     newRow.attr('id', 'row' + i)
-    console.log(newRow.attr('id'))
+    // console.log(newRow.attr('id'))
 
 
     var timeBlock = $('<div>');
@@ -59,11 +59,11 @@ for (let i = 0; i < 9; i++) {
     notesBlock.height('25vh');
 
     var noteId = notesBlock.attr('id');
-    console.log(noteId)
+    // console.log(noteId)
 
     if (localStorage.getItem(noteId) === null) {
         localStorage.setItem(noteId, '');
-        console.log(noteId);
+        // console.log(noteId);
     }
 
     var saveBlock = $('<div>');
@@ -73,8 +73,8 @@ for (let i = 0; i < 9; i++) {
     saveBlock.height('25vh');
 
     var ulElem = $('<ul>');
-    ulElem.attr('id',i);
-    console.log(ulElem.attr('id'))
+    ulElem.attr('id', i);
+    // console.log(ulElem.attr('id'))
 
     if (i < 3) {
         count = i + 9
@@ -105,7 +105,9 @@ for (let i = 0; i < 9; i++) {
 
 $('.notesBlock').on('click', function (event) {
     ///making block variable global
-    block = event.target.id;
+    console.log(event.currentTarget);
+    block = event.currentTarget.id;
+    
     // var blockObj = document.getElementById(block);
     console.log(block);
 
@@ -115,17 +117,20 @@ $('.notesBlock').on('click', function (event) {
 })
 
 $('#enterInfo').on('click', function (event) {
-    
+    event.stopPropagation();
     var noteInfo = $('#noteInfo').val();
-    
+
     $('#my-modal').hide()
     $('#noteInfo').text('Enter notes')
-    
+
+    // console.log(block)
+
     var newLiEl = $('<li>');
     newLiEl.text(noteInfo);
-    ulId =block[block.length-1];
+    ulId = block[block.length - 1];
     console.log(ulId);
-   $('#'+ulId).append(newLiEl);
 
-    
+    $('#' + ulId).append(newLiEl);
+    block = ''
+
 })

@@ -20,7 +20,14 @@
     border-bottom-right-radius: 9px;
 }
 
+.notesBlock{
+    overflow: hidden;
+   
+}
+
 .notesBlock:hover{
     background-color: aquamarine;
+    
+    
 }
 
