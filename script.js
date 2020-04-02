@@ -10,9 +10,9 @@ console.log(currentTime);
 
 
 var now = currentTime.toString();
-if(now.length===7){
-  now='0'+now;
-}  
+if (now.length === 7) {
+    now = '0' + now;
+}
 
 console.log(now.length)
 
@@ -41,30 +41,40 @@ $('#my-modal').hide()
 
 for (let i = 0; i < 9; i++) {
     var newRow = $('<div>');
-    newRow.addClass('row text-center mx-auto mt-1');
+    newRow.addClass('row mx-auto mt-1');
     newRow.attr('id', 'row' + i)
     console.log(newRow.attr('id'))
 
 
     var timeBlock = $('<div>');
     timeBlock.addClass('col-1 timeBlock rowcont');
-    timeBlock.text('timeBlock')
+    timeBlock.text('timeBlock').css('font-size', '2vw')
     timeBlock.attr('id', 'timeBlock' + i)
-    timeBlock.height('15vh');
+    timeBlock.height('25vh');
 
     var notesBlock = $('<div>');
-    notesBlock.addClass('col-9 notesBlock rowcont text-center');
-    notesBlock.text('notesBlock');
+    notesBlock.addClass('col-9 notesBlock rowcont ');
+    notesBlock.text('notesBlock').css('font-size', '2vw');
     notesBlock.attr('id', 'notesBlock' + i);
-    notesBlock.height('15vh');
+    notesBlock.height('25vh');
+
+    var noteId = notesBlock.attr('id');
+    console.log(noteId)
+
+    if (localStorage.getItem(noteId) === null) {
+        localStorage.setItem(noteId, '');
+        console.log(noteId);
+    }
 
     var saveBlock = $('<div>');
-    saveBlock.addClass('col-1 saveBlock rowcont')
-    saveBlock.text('saveBlock');
+    saveBlock.addClass('col-2 saveBlock rowcont text-left')
+    saveBlock.text('saveBlock').css('font-size', '1.5vw');
     saveBlock.attr('id', 'saveBlock' + i)
-    saveBlock.height('15vh');
+    saveBlock.height('25vh');
 
     var ulElem = $('<ul>');
+    ulElem.attr('id',i);
+    console.log(ulElem.attr('id'))
 
     if (i < 3) {
         count = i + 9
@@ -79,7 +89,7 @@ for (let i = 0; i < 9; i++) {
         count = count + ' PM'
         timeBlock.text(count);
     }
-    
+
 
     $('#main').append(newRow);
     newRow.append(timeBlock);
@@ -94,22 +104,28 @@ for (let i = 0; i < 9; i++) {
 
 
 $('.notesBlock').on('click', function (event) {
-    var block = event.target.id;
+    ///making block variable global
+    block = event.target.id;
+    // var blockObj = document.getElementById(block);
     console.log(block);
-   
+
     $('textarea').css('height', '150')
-    // $('textarea').text('Enter notes for ' +h1El.text()+' @ '+);
+    $('textarea').text('Enter new notes');
     $('#my-modal').show()
 })
 
 $('#enterInfo').on('click', function (event) {
-    event.stopPropagation()
-    event.preventDefault()
-    var noteInfo = $('textarea').text()
-    $('textarea').text('Enter notes')
-    console.log(noteInfo)
+    
+    var noteInfo = $('#noteInfo').val();
+    
     $('#my-modal').hide()
+    $('#noteInfo').text('Enter notes')
+    
     var newLiEl = $('<li>');
-    newLiEl.text(noteInfo)
+    newLiEl.text(noteInfo);
+    ulId =block[block.length-1];
+    console.log(ulId);
+   $('#'+ulId).append(newLiEl);
+
     
 })
