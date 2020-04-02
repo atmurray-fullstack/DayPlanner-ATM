@@ -1,20 +1,19 @@
-
+var todoArr = [];
 var currentTime = moment().format('LT');
+
+
 function getTime() {
     currentTime = moment().format('LT')
 }
+
 getTime();
 
 console.log(currentTime);
-
-
 
 var now = currentTime.toString();
 if (now.length === 7) {
     now = '0' + now;
 }
-
-console.log(now.length)
 
 now = now.split("");
 now.splice(2, 4);
@@ -62,8 +61,10 @@ for (let i = 0; i < 9; i++) {
     // console.log(noteId)
 
     if (localStorage.getItem(noteId) === null) {
-        localStorage.setItem(noteId, '');
+        localStorage.setItem(noteId, JSON.stringify(todoArr));
         // console.log(noteId);
+    }else{
+        notesBlock.text(JSON.parse(localStorage.getItem(noteId)))
     }
 
     var saveBlock = $('<div>');
@@ -72,9 +73,7 @@ for (let i = 0; i < 9; i++) {
     saveBlock.attr('id', 'saveBlock' + i)
     saveBlock.height('25vh');
 
-    var ulElem = $('<ul>');
-    ulElem.attr('id', i);
-    // console.log(ulElem.attr('id'))
+   
 
     if (i < 3) {
         count = i + 9
@@ -95,7 +94,7 @@ for (let i = 0; i < 9; i++) {
     newRow.append(timeBlock);
     newRow.append(notesBlock);
     newRow.append(saveBlock);
-    notesBlock.append(ulElem);
+    
 
 }
 
@@ -105,32 +104,32 @@ for (let i = 0; i < 9; i++) {
 
 $('.notesBlock').on('click', function (event) {
     ///making block variable global
-    console.log(event.currentTarget);
     block = event.currentTarget.id;
-    
-    // var blockObj = document.getElementById(block);
     console.log(block);
 
     $('textarea').css('height', '150')
-    $('textarea').text('Enter new notes');
+    if (localStorage.getItem(block) !== []) {
+        $('textarea').text(JSON.parse(localStorage.getItem(block)));
+    }
     $('#my-modal').show()
 })
 
 $('#enterInfo').on('click', function (event) {
-    event.stopPropagation();
+    console.log($('#noteInfo').val())
     var noteInfo = $('#noteInfo').val();
-
+    todoArr.push(noteInfo)
+    console.log(todoArr)
     $('#my-modal').hide()
-    $('#noteInfo').text('Enter notes')
+    $('#noteInfo').val('Enter notes')
 
     // console.log(block)
 
-    var newLiEl = $('<li>');
-    newLiEl.text(noteInfo);
-    ulId = block[block.length - 1];
-    console.log(ulId);
+    var noteDiv = $('<div>');
+    noteDiv.text(noteInfo);
+    console.log(noteDiv.val());
+    $('#' + block).append(noteDiv);
 
-    $('#' + ulId).append(newLiEl);
+    localStorage.setItem(block, JSON.stringify(todoArr));
     block = ''
 
 })
