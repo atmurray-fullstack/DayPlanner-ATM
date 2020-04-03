@@ -1,5 +1,11 @@
 
+////////mutable variables//////////
+
 var currentTime = moment().format('LT');
+var filler = '';
+var block = '';
+var now = '';
+var h1El = $('<h1>');
 
 
 function getTime() {
@@ -10,7 +16,7 @@ getTime();
 
 console.log(currentTime);
 
-var now = currentTime.toString();
+now = currentTime.toString();
 if (now.length === 7) {
     now = '0' + now;
 }
@@ -28,7 +34,7 @@ console.log(amPm);
 
 
 
-var h1El = $('<h1>');
+
 h1El.text(moment().format('ll'))
 //fill in todayDate h1
 $('#todayDate').append(h1El)
@@ -42,36 +48,36 @@ for (let i = 0; i < 9; i++) {
     var newRow = $('<div>');
     newRow.addClass('row mx-auto mt-1');
     newRow.attr('id', 'row' + i)
+    newRow.height('25vh');
     // console.log(newRow.attr('id'))
 
 
     var timeBlock = $('<div>');
-    timeBlock.addClass('col-1 timeBlock rowcont');
-    timeBlock.text('timeBlock').css('font-size', '2vw')
+    timeBlock.addClass('col-1 timeBlock rowcont fontDefault');
+    timeBlock.text('timeBlock')
     timeBlock.attr('id', 'timeBlock' + i)
-    timeBlock.height('25vh');
+    // timeBlock.height('25vh');
 
     var notesBlock = $('<div>');
-    notesBlock.addClass('col-9 notesBlock rowcont ');
-    notesBlock.text('notesBlock').css('font-size', '2vw');
+    notesBlock.addClass('col-9 notesBlock rowcont fontDefault');
+    notesBlock.text('Events');
     notesBlock.attr('id', 'notesBlock' + i);
-    notesBlock.height('25vh');
+    // notesBlock.height('25vh');
 
     var noteId = notesBlock.attr('id');
     // console.log(noteId)
 
     if (localStorage.getItem(noteId) === null) {
         localStorage.setItem(noteId, '');
-        // console.log(noteId);
     } else {
         notesBlock.text(localStorage.getItem(noteId));
     }
 
     var saveBlock = $('<div>');
-    saveBlock.addClass('col-2 saveBlock rowcont text-left')
-    saveBlock.text('saveBlock').css('font-size', '1.5vw');
+    saveBlock.addClass('col-2 saveBlock rowcont text-left fontDefault')
+    saveBlock.text('saveBlock')
     saveBlock.attr('id', 'saveBlock' + i)
-    saveBlock.height('25vh');
+    // saveBlock.height('25vh');
 
 
 
@@ -98,9 +104,34 @@ for (let i = 0; i < 9; i++) {
 
 }
 
+////////////SET INTERVAL FOR BACKGROUND COLOR OF TIME BLOCKS\\\\\\\\\\\\\
+
+setInterval(function () {
+    getTime();
+
+    now = currentTime.toString();
+    if (now.length === 7) {
+        now = '0' + now;
+    }
+
+    now = now.split("");
+    now.splice(2, 4);
+    console.log(now);
+
+    hour = now[0] + now[1];
+    hour = parseInt(hour);
+    amPm = now[2] + now[3];
+    console.log(typeof hour);
+    console.log(amPm);
+
+    
+
+}, 1000);
 
 
 
+
+/////////// .ON CLICK EVENTS///////////////////////
 
 $('.notesBlock').on('click', function (event) {
     ///making block variable global
@@ -125,6 +156,8 @@ $('#enterInfo').on('click', function (event) {
     $('#my-modal').hide();
     $('#noteInfo').val('Enter notes')
 })
+
+
 
 $('.saveBlock').on('click', function (event) {
     console.log(event.currentTarget);
