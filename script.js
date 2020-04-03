@@ -63,7 +63,7 @@ for (let i = 0; i < 9; i++) {
     if (localStorage.getItem(noteId) === null) {
         localStorage.setItem(noteId, JSON.stringify(todoArr));
         // console.log(noteId);
-    }else{
+    } else {
         notesBlock.text(JSON.parse(localStorage.getItem(noteId)))
     }
 
@@ -73,7 +73,7 @@ for (let i = 0; i < 9; i++) {
     saveBlock.attr('id', 'saveBlock' + i)
     saveBlock.height('25vh');
 
-   
+
 
     if (i < 3) {
         count = i + 9
@@ -94,7 +94,7 @@ for (let i = 0; i < 9; i++) {
     newRow.append(timeBlock);
     newRow.append(notesBlock);
     newRow.append(saveBlock);
-    
+
 
 }
 
@@ -106,30 +106,38 @@ $('.notesBlock').on('click', function (event) {
     ///making block variable global
     block = event.currentTarget.id;
     console.log(block);
-
+    var filler = $('#' + block).text();
     $('textarea').css('height', '150')
-    if (localStorage.getItem(block) !== []) {
-        $('textarea').text(JSON.parse(localStorage.getItem(block)));
-    }
-    $('#my-modal').show()
+    console.log(filler);
+
+    $('#noteInfo').text(filler);
+
+    $('#my-modal').show();
 })
 
+
+
+
 $('#enterInfo').on('click', function (event) {
-    console.log($('#noteInfo').val())
+    // console.log($('#noteInfo').val());
+
     var noteInfo = $('#noteInfo').val();
-    todoArr.push(noteInfo)
-    console.log(todoArr)
-    $('#my-modal').hide()
-    $('#noteInfo').val('Enter notes')
+    $('#' + block).text(noteInfo);
+    console.log(noteInfo)
+    // todoArr.push(noteInfo);
+    // console.log(todoArr);
+
+    $('#my-modal').hide();
+    $('#noteInfo').text('Enter notes')
 
     // console.log(block)
 
-    var noteDiv = $('<div>');
-    noteDiv.text(noteInfo);
-    console.log(noteDiv.val());
-    $('#' + block).append(noteDiv);
+    // var noteDiv = $('<div>');
+    // noteDiv.text(noteInfo);
+    // console.log(noteDiv.val());
+    // $('#' + block).append(noteDiv);
 
-    localStorage.setItem(block, JSON.stringify(todoArr));
-    block = ''
+    // localStorage.setItem(block, JSON.stringify(todoArr));
+    // block = ''
 
 })
