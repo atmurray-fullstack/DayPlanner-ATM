@@ -1,4 +1,4 @@
-var todoArr = [];
+
 var currentTime = moment().format('LT');
 
 
@@ -61,10 +61,10 @@ for (let i = 0; i < 9; i++) {
     // console.log(noteId)
 
     if (localStorage.getItem(noteId) === null) {
-        localStorage.setItem(noteId, JSON.stringify(todoArr));
+        localStorage.setItem(noteId, '');
         // console.log(noteId);
     } else {
-        notesBlock.text(JSON.parse(localStorage.getItem(noteId)))
+        notesBlock.text(localStorage.getItem(noteId));
     }
 
     var saveBlock = $('<div>');
@@ -107,10 +107,9 @@ $('.notesBlock').on('click', function (event) {
     block = event.currentTarget.id;
     console.log(block);
     var filler = $('#' + block).text();
-    $('textarea').css('height', '150')
     console.log(filler);
-
-    $('#noteInfo').text(filler);
+    $('textarea').css('height', '150')
+    $('#noteInfo').val(filler);
 
     $('#my-modal').show();
 })
@@ -119,25 +118,20 @@ $('.notesBlock').on('click', function (event) {
 
 
 $('#enterInfo').on('click', function (event) {
-    // console.log($('#noteInfo').val());
-
     var noteInfo = $('#noteInfo').val();
     $('#' + block).text(noteInfo);
     console.log(noteInfo)
-    // todoArr.push(noteInfo);
-    // console.log(todoArr);
 
     $('#my-modal').hide();
-    $('#noteInfo').text('Enter notes')
-
-    // console.log(block)
-
-    // var noteDiv = $('<div>');
-    // noteDiv.text(noteInfo);
-    // console.log(noteDiv.val());
-    // $('#' + block).append(noteDiv);
-
-    // localStorage.setItem(block, JSON.stringify(todoArr));
-    // block = ''
-
+    $('#noteInfo').val('Enter notes')
 })
+
+$('.saveBlock').on('click', function (event) {
+    console.log(event.currentTarget);
+    sBlock = event.currentTarget.id;
+    block = 'notesBlock' + sBlock[sBlock.length - 1];
+    var filler = $('#' + block).text();
+    console.log(block);
+    console.log(filler);
+    localStorage.setItem(block, filler)
+});
