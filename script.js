@@ -14,8 +14,6 @@ function getTime() {
 
 getTime();
 
-console.log(currentTime);
-
 now = currentTime.toString();
 if (now.length === 7) {
     now = '0' + now;
@@ -37,11 +35,8 @@ amPm = now[2] + now[3];
 h1El.text(moment().format('ll'))
 //fill in todayDate h1
 $('#todayDate').append(h1El)
-$('#todayDate').addClass('mb-3')
+$('#todayDate').addClass('mb-5')
 $('#my-modal').hide()
-
-
-
 
 for (let i = 0; i < 9; i++) {
     var newRow = $('<div>');
@@ -127,6 +122,7 @@ setInterval(function () {
     ;
 
     for (let i = 0; i < 9; i++) {
+        var rowB = 'row' + i;
         var timeB = 'timeBlock' + i;
         var notesB = 'notesBlock' + i;
         var saveB = 'saveBlock' + i;
@@ -134,6 +130,19 @@ setInterval(function () {
         console.log(timeBText)
 
         if (timeBText === (hour + ' ' + amPm)) {
+            $('#' + rowB).css({
+                'height': '35vh',
+                'margin-top': '5px',
+                'margin-bottom': '5px',
+                'border-style': 'solid',
+                'border-width': '2px',
+                'border-color': 'black',
+                'border-radius': '3px',
+                'padding-right': '4px',
+                'padding-left': '4px'
+
+
+            })
             $('#' + timeB).css({
                 'background-color': 'whitesmoke',
                 'font-weight': 'bolder',
@@ -161,10 +170,11 @@ setInterval(function () {
                 'border-color': 'tomato',
                 'margin-top': '4px',
                 'margin-bottom': '4px',
+                'color':'tomato'
             });
         }
     }
-}, 1000);
+}, 500);
 
 
 
@@ -174,12 +184,9 @@ setInterval(function () {
 $('.notesBlock').on('click', function (event) {
     ///making block variable global
     block = event.currentTarget.id;
-    console.log(block);
     var filler = $('#' + block).text();
-    console.log(filler);
     $('textarea').css('height', '150')
     $('#noteInfo').val(filler);
-
     $('#my-modal').show();
 })
 
@@ -189,8 +196,6 @@ $('.notesBlock').on('click', function (event) {
 $('#enterInfo').on('click', function (event) {
     var noteInfo = $('#noteInfo').val();
     $('#' + block).text(noteInfo);
-    console.log(noteInfo)
-
     $('#my-modal').hide();
     $('#noteInfo').val('Enter notes')
 })

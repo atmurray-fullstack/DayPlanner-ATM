@@ -26,7 +26,11 @@
 background-color:tomato;
 color: whitesmoke;
 font-size: 5vh;
-
+background-image: url('https://image.flaticon.com/icons/png/512/84/84297.png');
+background-position: center;
+background-size: contain;
+background-repeat: no-repeat;
+text-justify: auto;
 }
 
 .notesBlock{
