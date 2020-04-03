@@ -28,8 +28,7 @@ console.log(now);
 hour = now[0] + now[1];
 hour = parseInt(hour);
 amPm = now[2] + now[3];
-console.log(typeof hour);
-console.log(amPm);
+
 
 
 
@@ -83,14 +82,18 @@ for (let i = 0; i < 9; i++) {
 
     if (i < 3) {
         count = i + 9
+        timeBlock.attr('data-hour', count)
         count = count + ' AM'
         timeBlock.text(count);
+
     } else if (i == 3) {
         count = i + 9
+        timeBlock.attr('data-hour', count)
         count = count + ' PM'
         timeBlock.text(count);
     } else if (i > 3 && i < 9) {
         count = i - 3
+        timeBlock.attr('data-hour', count)
         count = count + ' PM'
         timeBlock.text(count);
     }
@@ -121,11 +124,46 @@ setInterval(function () {
     hour = now[0] + now[1];
     hour = parseInt(hour);
     amPm = now[2] + now[3];
-    console.log(typeof hour);
-    console.log(amPm);
+    ;
 
-    
+    for (let i = 0; i < 9; i++) {
+        var timeB = 'timeBlock' + i;
+        var notesB = 'notesBlock' + i;
+        var saveB = 'saveBlock' + i;
+        timeBText = $('#' + timeB).text()
+        console.log(timeBText)
 
+        if (timeBText === (hour + ' ' + amPm)) {
+            $('#' + timeB).css({
+                'background-color': 'whitesmoke',
+                'font-weight': 'bolder',
+                'border-style': 'solid',
+                'border-width': '5px',
+                'border-color': 'tomato',
+                'margin-top': '4px',
+                'margin-bottom': '4px',
+            });
+
+            $('#' + notesB).css({
+                'background-color': 'whitesmoke',
+                'font-weight': 'bolder',
+                'border-style': 'solid',
+                'border-width': '5px',
+                'border-color': 'tomato',
+                'margin-top': '4px',
+                'margin-bottom': '4px',
+            });
+            $('#' + saveB).css({
+                'background-color': 'whitesmoke',
+                'font-weight': 'bolder',
+                'border-style': 'solid',
+                'border-width': '5px',
+                'border-color': 'tomato',
+                'margin-top': '4px',
+                'margin-bottom': '4px',
+            });
+        }
+    }
 }, 1000);
 
 
