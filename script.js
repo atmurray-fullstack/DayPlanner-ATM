@@ -13,7 +13,7 @@ function getTime() {
 }
 
 getTime();
-
+////////////get variables for hour and AM PM
 now = currentTime.toString();
 if (now.length === 7) {
     now = '0' + now;
@@ -27,14 +27,9 @@ hour = now[0] + now[1];
 hour = parseInt(hour);
 amPm = now[2] + now[3];
 
-
-
-
-
-
 h1El.text(moment().format('ll'))
 //fill in todayDate h1
-$('#todayDate').append(h1El)
+$('#todayDate').append(h1El).css('font-family','Pacifico, cursive')
 $('#todayDate').addClass('mb-5')
 $('#my-modal').hide()
 
@@ -201,7 +196,7 @@ $('.notesBlock').on('click', function (event) {
 
 
 $('#enterInfo').on('click', function (event) {
-    var noteInfo = $('#noteInfo').val();
+    var noteInfo = $('#noteInfo').text();
     $('#' + block).text(noteInfo);
     $('#my-modal').hide();
     $('#noteInfo').val('Enter notes')

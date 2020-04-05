@@ -45,6 +45,7 @@
 
 .notesBlock{
     overflow-wrap: normal;
+    white-space: pre-wrap;
    
 }
 
