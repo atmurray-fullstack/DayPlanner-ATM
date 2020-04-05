@@ -29,13 +29,13 @@ amPm = now[2] + now[3];
 
 h1El.text(moment().format('ll'))
 //fill in todayDate h1
-$('#todayDate').append(h1El).css('font-family','Pacifico, cursive')
+$('#todayDate').append(h1El).css('font-family', 'Pacifico, cursive')
 $('#todayDate').addClass('mb-5')
 $('#my-modal').hide()
 
 for (let i = 0; i < 9; i++) {
     var newRow = $('<div>');
-    newRow.addClass('row mx-auto mt-1');
+    newRow.addClass('row mx-auto mt-1 noteRow');
     newRow.attr('id', 'row' + i)
     newRow.height('25vh');
 
@@ -47,11 +47,11 @@ for (let i = 0; i < 9; i++) {
 
     var notesBlock = $('<div>');
     notesBlock.addClass('col-9 notesBlock rowcont fontDefault');
-    notesBlock.text('Events').css('font-family','Pacifico, cursive');
+    notesBlock.text('Events').css('font-family', 'Pacifico, cursive');
     notesBlock.attr('id', 'notesBlock' + i);
 
     var noteId = notesBlock.attr('id');
-    
+
 
     if (localStorage.getItem(noteId) === null) {
         localStorage.setItem(noteId, '');
@@ -105,8 +105,6 @@ setInterval(function () {
 
     now = now.split("");
     now.splice(2, 4);
-    console.log(now);
-
     hour = now[0] + now[1];
     hour = parseInt(hour);
     amPm = now[2] + now[3];
@@ -126,50 +124,6 @@ setInterval(function () {
             $('#' + timeB).addClass('timeNotesStyle')
             $('#' + notesB).addClass('timeNotesStyle')
 
-            // $('#' + rowB).css({
-            //     'height': '35vh',
-            //     'margin-top': '5px',
-            //     'margin-bottom': '5px',
-            //     'border-style': 'solid',
-            //     'border-width': '2px',
-            //     'border-color': 'black',
-            //     'border-radius': '3px',
-            //     'padding-right': '4px',
-            //     'padding-left': '4px'
-
-
-            // })
-
-            // $('#' + timeB).css({
-            //     'background-color': 'whitesmoke',
-            //     'font-weight': 'bolder',
-            //     'border-style': 'solid',
-            //     'border-width': '5px',
-            //     'border-color': 'tomato',
-            //     'margin-top': '4px',
-            //     'margin-bottom': '4px',
-            // });
-
-            // $('#' + notesB).css({
-            //     'background-color': 'whitesmoke',
-            //     'font-weight': 'bolder',
-            //     'border-style': 'solid',
-            //     'border-width': '5px',
-            //     'border-color': 'tomato',
-            //     'margin-top': '4px',
-            //     'margin-bottom': '4px',
-            // });
-
-            // $('#' + saveB).css({
-            //     'background-color': 'whitesmoke',
-            //     'font-weight': 'bolder',
-            //     'border-style': 'solid',
-            //     'border-width': '5px',
-            //     'border-color': 'tomato',
-            //     'margin-top': '4px',
-            //     'margin-bottom': '4px',
-            //     'color': 'tomato'
-            // });
         } else {
             $('#' + rowB).removeClass('currentTimeRow');
             $('#' + saveB).removeClass('timeNotesStyle');
@@ -196,10 +150,12 @@ $('.notesBlock').on('click', function (event) {
 
 
 $('#enterInfo').on('click', function (event) {
-    var noteInfo = $('#noteInfo').text();
+   event.preventDefault();
+      
+    var noteInfo = $('#noteInfo').val();
     $('#' + block).text(noteInfo);
     $('#my-modal').hide();
-    $('#noteInfo').val('Enter notes')
+    
 })
 
 

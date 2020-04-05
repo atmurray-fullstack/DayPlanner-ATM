@@ -18,7 +18,12 @@
 .fontDefault{
     font-size: 3vh;
 }
+.noteRow{
+    border: solid black 4px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
 
+}
 .rowcont{
     
     background-color: teal;
