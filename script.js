@@ -52,7 +52,7 @@ for (let i = 0; i < 9; i++) {
 
     var notesBlock = $('<div>');
     notesBlock.addClass('col-9 notesBlock rowcont fontDefault');
-    notesBlock.text('Events');
+    notesBlock.text('Events').css('font-family','Pacifico, cursive');
     notesBlock.attr('id', 'notesBlock' + i);
 
     var noteId = notesBlock.attr('id');
