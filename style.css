@@ -1,10 +1,19 @@
+
+
+
+.input-group{
+    padding: 50px 2vh 2vh 2vh;
+    
+}
 #my-modal{
     position:fixed;
     top:25%;
     z-index:1;
     height:40%;
     background-color: darksalmon;
+    border-radius:20px;
 }
+
 .fontDefault{
     font-size: 3vh;
 }
@@ -23,14 +32,14 @@
     border-bottom-right-radius: 9px;
 }
 .saveBlock:hover{
-background-color:tomato;
-color: whitesmoke;
-font-size: 5vh;
-background-image: url('https://image.flaticon.com/icons/png/512/84/84297.png');
-background-position: center;
-background-size: contain;
-background-repeat: no-repeat;
-text-justify: auto;
+    background-color:tomato;
+    color: whitesmoke;
+    font-size: 4vh;
+    background-image: url('https://image.flaticon.com/icons/png/512/84/84297.png');
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    text-justify: auto;
 }
 
 .notesBlock{
@@ -50,3 +59,26 @@ text-justify: auto;
 
 
 
+.currentTimeRow{
+    height: 35vh;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: black;
+    border-radius: 3px;
+    padding-right: 4px;
+    padding-left: 4px;
+
+
+}
+.timeNotesStyle{
+    background-color:whitesmoke;
+    color:black;
+    font-weight:bolder;
+    border-style:solid;
+    border-width:5px;
+    border-color: tomato;
+    margin-top:4px;
+    margin-bottom:4px;
+}
