@@ -24,6 +24,10 @@
     background-color: teal;
     
 }
+.timeBlock{
+
+    font-family: 'Permanent Marker', cursive;
+}
 
 .saveBlock{
     border-left-style: solid;
@@ -31,6 +35,7 @@
     border-left-color: tomato;
     border-top-right-radius: 9px;
     border-bottom-right-radius: 9px;
+    font-family: 'Permanent Marker', cursive;
 }
 .saveBlock:hover{
     background-color:tomato;
@@ -41,6 +46,7 @@
     background-size: contain;
     background-repeat: no-repeat;
     text-justify: auto;
+    font-family: 'Permanent Marker', cursive;
 }
 
 .notesBlock{
